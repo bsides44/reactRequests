@@ -5,7 +5,7 @@ export const times = {
     day: 86400,
     hour: 3600,
     minute: 60,
-    second: 1
+    // second: 1
 };
 
 export const checkPlural = (value, singular) => {
@@ -28,4 +28,18 @@ export const calculateTimeToNow = (pastTime) => {
     return Object.keys(timeBox).map((key, i) => {
         return `${timeBox[key] ? timeBox[key] + checkPlural(timeBox[key], key) + checkLast(Object.keys(timeBox), i) : ""}`
     }).join("")
+}
+
+export const calculateAvOpenTime = (pullsData) => {
+    const openTimes = []
+    pullsData.map(pull => {
+        if (pull.closed_at === null) {
+            const event = Math.abs(new Date(pull.created_at))
+            openTimes.push(event)
+        }
+        return pull
+    })
+    const avSeconds = (openTimes.reduce((a, b) => a + b)) / openTimes.length
+    const splitTimeArray = calculateTimeToNow(avSeconds).split(", ")
+    return splitTimeArray
 }
