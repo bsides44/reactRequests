@@ -37,7 +37,7 @@ function App() {
         <Detailed
           pullsData={pullsData} />
         <p><b>Total React Core Team Pull Requests: {coreTeamPulls.length}</b></p>
-        {coreTeamPulls.length ? (coreTeamPulls.length / totalOpenPulls) * 100 : 0}% of total
+        {(coreTeamPulls.length ? (coreTeamPulls.length / totalOpenPulls) * 100 : 0).toFixed(2)}% of total
       </Page.Content>
     </div >
   );
