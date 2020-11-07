@@ -3812,9 +3812,13 @@ input[type="button"].btn-block {
   .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: #206bc4;
-    border-color: #206bc4; }
-
+    background-color: #161617;
+    border-color: #161617; }
+  .list-group-item:hover {
+    cursor: pointer !important;
+    background-color: #e9ecef !important; 
+  }
+    
 .list-group-horizontal {
   flex-direction: row; }
   .list-group-horizontal .list-group-item {
@@ -12205,7 +12209,7 @@ Image check
     color: #adb5bd; }
   .list-group-transparent .list-group-item.active {
     font-weight: 600;
-    color: #206bc4;
+    color: #161617;
     background: rgba(32, 107, 196, 0.06); }
     .list-group-transparent .list-group-item.active .icon {
       color: inherit; }

@@ -43,3 +43,10 @@ export const calculateAvOpenTime = (pullsData) => {
     const splitTimeArray = calculateTimeToNow(avSeconds).split(", ")
     return splitTimeArray
 }
+
+export const checkDateIsToday = (incoming) => {
+    const today = new Date()
+    const incomingDate = new Date(incoming)
+    return incomingDate.getDate() === today.getDate() && incomingDate.getMonth() === today.getMonth() &&
+        incomingDate.getFullYear() === today.getFullYear()
+}

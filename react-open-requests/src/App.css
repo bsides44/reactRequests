@@ -41,3 +41,21 @@
   display: flex;
   flex-direction: row;
 }
+
+.row .center {
+  justify-content: center;
+}
+
+.btn-inv {
+  border: none;
+  background: none;
+  margin: 0 0 0.5rem;
+}
+
+.btn-inv:focus {
+  outline:none
+}
+
+.fe-chevron-down:hover, .fe-chevron-up:hover{
+  cursor: pointer;
+}

@@ -5,21 +5,24 @@ import HighchartsReact from 'highcharts-react-official'
 
 
 const ProportionChart = (props) => {
+  const { coreTeamPulls, pullsData } = props
   const [proportionCorePulls, setProportionCorePulls] = useState(0);
   const [proportionPulls, setProportionPulls] = useState(0);
-  const [placeholderOptions, setPlaceholderOptions] = useState({
+  const [placeholderOptions] = useState({
     chart: {
       type: "pie",
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: false,
+      height: 265,
       style: {
         fontFamily: "Helvetica Neue",
       },
-      marginRight: 40,
+      margin: [0, 0, 0, 0],
+      spacingTop: 0,
+      spacingBottom: 0,
       spacingLeft: 0,
-      spacingRight: 0,
-      spacingBottom: 30,
+      spacingRight: 0
     },
     title: {
       text: "",
@@ -30,25 +33,61 @@ const ProportionChart = (props) => {
     credits: {
       enabled: false
     },
+    legend: {
+      enabled: false
+    },
+    tooltip: {
+      borderColor: "none",
+      style: {
+        color: "#333333",
+        fontSize: "14",
+        whiteSpace: "nowrap",
+      },
+      headerFormat: `<span style="font-size: "14px"">{point.key}:</span>`,
+      pointFormatter: function () {
+        const request = this.y > 1 ? "requests" : "request"
+        return `<span><br/>${this.y} ${request}</span>`
+      },
+    },
     plotOptions: {
       pie: {
         allowPointSelect: true,
         cursor: 'pointer',
+        size: '100%',
         dataLabels: {
           enabled: false,
         },
+        accessibility: {
+          description: "Pie chart denoting proportion of requests from React Core Team requests",
+          enabled: true,
+          exposeAsGroupOnly: false,
+          pointDescriptionFormatter: undefined,
+        },
+        animation: {
+          defer: 10
+        }
       },
+    },
+    xAxis: {
+      visible: false,
+      minPadding: 0,
+      maxPadding: 0
+    },
+    yAxis: {
+      visible: false,
+      minPadding: 0,
+      maxPadding: 0
     },
     series: [{
       data: [{
         name: "React Core Team",
-        color: "#62c0cd",
+        color: "#29418D",
         y: 0,
         sliced: true,
         selected: true
       },
       {
-        name: "Total Pull Requests",
+        name: "Other",
         color: "#d8d8d8",
         y: 100,
       }]
@@ -71,13 +110,15 @@ const ProportionChart = (props) => {
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: false,
+      height: 265,
+      margin: [0, 0, 0, 0],
+      spacingTop: 0,
+      spacingBottom: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
       style: {
         fontFamily: "Helvetica Neue",
       },
-      marginRight: 40,
-      spacingLeft: 0,
-      spacingRight: 0,
-      spacingBottom: 30,
     },
     title: {
       text: "",
@@ -88,25 +129,56 @@ const ProportionChart = (props) => {
     credits: {
       enabled: false
     },
+    legend: {
+      enabled: false
+    },
+    tooltip: {
+      borderColor: "none",
+      style: {
+        color: "#333333",
+        fontSize: "14",
+        whiteSpace: "nowrap",
+      },
+      headerFormat: `<span style="font-size: "14px"">{point.key}:</span>`,
+      pointFormatter: function () {
+        const request = this.y > 1 ? "requests" : "request"
+        return `<span><br/>${this.y} ${request}</span>`
+      },
+    },
     plotOptions: {
       pie: {
         allowPointSelect: true,
         cursor: 'pointer',
+        size: '100%',
         dataLabels: {
           enabled: false,
         },
+        accessibility: {
+          description: "Pie chart denoting proportion of requests from React Core Team",
+          enabled: true,
+          exposeAsGroupOnly: false,
+        },
+        animation: {
+          defer: 10
+        }
       },
+    },
+    xAxis: {
+      visible: false
+    },
+    yAxis: {
+      visible: false
     },
     series: [{
       data: [{
         name: "React Core Team",
-        color: "#62c0cd",
+        color: "#29418D",
         y: 50,
         sliced: true,
         selected: true
       },
       {
-        name: "Total Pull Requests",
+        name: "Other requests",
         color: "#d8d8d8",
         y: 50,
       }]
@@ -125,10 +197,8 @@ const ProportionChart = (props) => {
   });
 
   useEffect(() => {
-    const core = props.coreTeamPulls
-    const pull = props.pullsData
-    setProportionCorePulls((core.length / pull.length) * 100)
-    setProportionPulls(100 - ((core.length / pull.length) * 100))
+    setProportionCorePulls(coreTeamPulls.length)
+    setProportionPulls(pullsData.length - coreTeamPulls.length)
 
     setOptions({
       series: [{
@@ -140,7 +210,7 @@ const ProportionChart = (props) => {
         }]
       }],
     });
-  }, [proportionCorePulls, proportionPulls, props.coreTeamPulls, props.pullsData]);
+  }, [proportionCorePulls, proportionPulls, coreTeamPulls, pullsData]);
 
   return (
     <div id="proportion-chart">
