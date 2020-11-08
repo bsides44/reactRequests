@@ -17,7 +17,7 @@ const Snapshot = (props) => {
               color="teal"
               icon="inbox"
               header={totalOpenPulls ? totalOpenPulls : "0"}
-              footer={"Open PRs"}
+              footer={"Open Pull Requests"}
             />
           </Grid.Col>
           <Grid.Col>
@@ -25,7 +25,7 @@ const Snapshot = (props) => {
               color="yellow"
               icon="flag"
               header={totalNewPulls ? totalNewPulls : "0"}
-              footer={"New PRs"}
+              footer={"New Pull Requests"}
             />
           </Grid.Col>
         </Grid.Row>

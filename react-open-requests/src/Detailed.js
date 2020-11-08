@@ -8,7 +8,7 @@ const Detailed = (props) => {
 
   return (
     <div>
-      <p><b>Total React Core Team Pull Requests: <span style={{ color: "#477ee2" }}>{coreTeamPulls.length}</span></b></p>
+      <p><b>Total React Core Team Pull Requests: <span style={{ color: "#477ee2" }}>{coreTeamPulls ? coreTeamPulls.length : 0}</span></b></p>
       <p>{Math.round(coreTeamPulls.length ? (coreTeamPulls.length / totalOpenPulls) * 100 : 0)}% of total</p>
       <Grid.Row>
         {

@@ -33,7 +33,6 @@ function App() {
   const toggleChevron = () => {
     if (showDetailed === false) {
       toggleChevronDown()
-      goToDetailed()
     }
     else toggleChevronUp()
     return setShowDetailed(!showDetailed)
@@ -46,6 +45,7 @@ function App() {
     detailedButton.classList.remove('active')
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
     setShowDetailed(false)
+    toggleChevron()
   }
 
   const goToDetailed = () => {
@@ -55,10 +55,11 @@ function App() {
     snapshotButton.classList.remove('active')
     window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" })
     setShowDetailed(true)
+    toggleChevron()
   }
 
   return (
-    <div className="App" >
+    <div className="App">
       <Page.Content className="bg-block">
         <div style={{ backgroundColor: "white" }} className="p-5">
           <Grid.Row>
@@ -69,6 +70,7 @@ function App() {
                 imageURL={betty}
                 className="mb-5"
               />
+              <h5 className="mb-5"><a href="https://github.com/facebook/react" target="_blank" rel="noopener noreferrer">Github React repo</a> dashboard</h5>
               <div>
                 <List.Group transparent={true} className="mt-2">
                   <List.GroupItem

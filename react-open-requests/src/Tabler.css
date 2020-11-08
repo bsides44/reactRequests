@@ -10715,6 +10715,7 @@ Button with label
   font-weight: 500;
   margin: 0 0 1.5rem;
   line-height: 1;
+  overflow: hidden;
   color: inherit; }
   a.card-title:hover {
     color: inherit; }
