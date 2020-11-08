@@ -7,7 +7,9 @@ const Detailed = (props) => {
   const { pullsData, coreTeamPulls, totalOpenPulls } = props;
 
   return (
-    < div >
+    <div>
+      <p><b>Total React Core Team Pull Requests: <span style={{ color: "#477ee2" }}>{coreTeamPulls.length}</span></b></p>
+      <p>{Math.round(coreTeamPulls.length ? (coreTeamPulls.length / totalOpenPulls) * 100 : 0)}% of total</p>
       <Grid.Row>
         {
           pullsData ?
@@ -18,7 +20,7 @@ const Detailed = (props) => {
                 const durationString = calculateTimeToNow(event)
 
                 return <Grid.Col key={i} md={6} xl={4}>
-                  <Card title={pull.title} style={{ backgroundColor: pull.isCore ? "#C6F0F6" : "" }}>
+                  <Card title={pull.title} style={{ backgroundColor: pull.isCore ? "#89ABE9" : "" }}>
                     <Card.Body >
                       <p>Request id:  <a href={pull.html_url} target="_black" rel="noopener noreferrer" alt="Link to pull request">
                         {pull.id}
@@ -36,9 +38,8 @@ const Detailed = (props) => {
             <p>Loading...</p>
         }
       </Grid.Row >
-
-      <p><b>Total React Core Team Pull Requests: {coreTeamPulls.length}</b></p>
-      {Math.round(coreTeamPulls.length ? (coreTeamPulls.length / totalOpenPulls) * 100 : 0)}% of total
+      <p><b>Total Other Pull Requests: <span style={{ color: "89ABE9" }}>{totalOpenPulls ? totalOpenPulls - coreTeamPulls.length : 0}</span></b></p>
+      <p>{Math.round(coreTeamPulls.length ? ((totalOpenPulls - coreTeamPulls.length) / totalOpenPulls) * 100 : 0)}% of total</p>
     </div>
   );
 }

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Page, Card, Grid, List, Avatar } from "tabler-react";
 import './App.css';
+import { getAllReactData } from './api.js'
 import Detailed from './Detailed'
 import Snapshot from './Snapshot'
-
-import { Page, Card, Grid, List, Badge, Avatar } from "tabler-react";
-import { getAllReactData } from './api.js'
-import { checkDateIsToday } from "./tools"
+import { checkDateIsToday, toggleChevronUp, toggleChevronDown } from "./tools"
 import betty from './img/betty.jpg'
 
 function App() {
@@ -29,21 +28,15 @@ function App() {
       if (labelItem.name === "React Core Team") pull.isCore = true
       return labelItem.name === "React Core Team"
     })))
-    setPullsData(data.sort((a, b) => !!a.isCore - !!b.isCore))
+    setPullsData(data.sort((a, b) => !!b.isCore - !!a.isCore))
   }
 
-  const handleCollapseOnClick = () => {
+  const toggleChevron = () => {
     if (showDetailed === false) {
-      let chevron = document.getElementsByClassName('fe-chevron-down').item(0)
-      chevron.classList.remove('fe-chevron-down')
-      chevron.classList.add('fe-chevron-up')
+      toggleChevronUp()
       goToDetailed()
     }
-    else {
-      let chevron = document.getElementsByClassName('fe-chevron-up').item(0)
-      chevron.classList.remove('fe-chevron-up')
-      chevron.classList.add('fe-chevron-down')
-    }
+    else toggleChevronDown()
     return setShowDetailed(!showDetailed)
   };
 
@@ -67,68 +60,68 @@ function App() {
 
   return (
     <div className="App" >
-      <Page.Content>
-        <Grid.Row>
-          <Grid.Col md={3}>
-            <h1 className="mb-5">Hello Betty</h1>
-            <Avatar
-              size={"xl"}
-              imageURL={betty}
-              className="mb-5"
-            />
-            <div>
-              <List.Group transparent={true} className="mt-2">
-                <List.GroupItem
-                  id="goToSnapshot"
-                  className="d-flex align-items-center"
-                  active
-                  onClick={() => goToSnapshot()}
-                  icon="pie-chart"
-                //triangle, camera
-                >
-                  Snapshot
+      <Page.Content className="bg-block">
+        <div style={{ backgroundColor: "white" }} className="p-5">
+          <Grid.Row>
+            <Grid.Col md={3}>
+              <h1 className="mb-5">Hello Betty</h1>
+              <Avatar
+                size={"xl"}
+                imageURL={betty}
+                className="mb-5"
+              />
+              <div>
+                <List.Group transparent={true} className="mt-2">
+                  <List.GroupItem
+                    id="goToSnapshot"
+                    className="d-flex align-items-center"
+                    active
+                    onClick={() => goToSnapshot()}
+                    icon="pie-chart"
+                  >
+                    Snapshot
                     </List.GroupItem>
-                <List.GroupItem
-                  id="goToDetailed"
-                  onClick={() => goToDetailed()}
-                  className="d-flex align-items-center"
-                  icon="server"
-                //layers, square, server, chevrons-down
-                >
-                  Detailed
+                  <List.GroupItem
+                    id="goToDetailed"
+                    onClick={() => goToDetailed()}
+                    className="d-flex align-items-center"
+                    icon="server"
+                  >
+                    Detailed
                   </List.GroupItem>
-              </List.Group>
-            </div>
-          </Grid.Col>
-          <Grid.Col>
-            <Snapshot
-              pullsData={pullsData}
-              totalNewPulls={totalNewPulls}
-              totalClosedPulls={totalClosedPulls}
-              totalOpenPulls={totalOpenPulls}
-              coreTeamPulls={coreTeamPulls}
-            />
-            <Card id={"detailed"}>
-              <Card.Header>
-                <Card.Title>Detailed</Card.Title>
-                <Card.Options>
-                  <Card.OptionsItem
-                    onClick={() => handleCollapseOnClick()}
-                    className="icon fe fe-chevron-down"
-                  />
-                </Card.Options>
-              </Card.Header>
-              <Card.Body>
-                {showDetailed &&
-                  <Detailed
-                    pullsData={pullsData}
-                    totalOpenPulls={totalOpenPulls}
-                    coreTeamPulls={coreTeamPulls} />
-                }
-              </Card.Body>
-            </Card>
-          </Grid.Col>
-        </Grid.Row>
+                </List.Group>
+              </div>
+            </Grid.Col>
+            <Grid.Col>
+              <Snapshot
+                pullsData={pullsData}
+                totalNewPulls={totalNewPulls}
+                totalClosedPulls={totalClosedPulls}
+                totalOpenPulls={totalOpenPulls}
+                coreTeamPulls={coreTeamPulls}
+              />
+              <Card id={"detailed"}>
+                <Card.Header>
+                  <Card.Title>Detailed</Card.Title>
+                  <Card.Options>
+                    <Card.OptionsItem
+                      onClick={() => toggleChevron()}
+                      className="icon fe fe-chevron-down"
+                    />
+                  </Card.Options>
+                </Card.Header>
+                <Card.Body>
+                  {showDetailed &&
+                    <Detailed
+                      pullsData={pullsData}
+                      totalOpenPulls={totalOpenPulls}
+                      coreTeamPulls={coreTeamPulls} />
+                  }
+                </Card.Body>
+              </Card>
+            </Grid.Col>
+          </Grid.Row>
+        </div>
       </Page.Content>
     </div >
   );

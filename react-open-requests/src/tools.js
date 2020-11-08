@@ -50,3 +50,19 @@ export const checkDateIsToday = (incoming) => {
     return incomingDate.getDate() === today.getDate() && incomingDate.getMonth() === today.getMonth() &&
         incomingDate.getFullYear() === today.getFullYear()
 }
+
+export const toggleChevronUp = () => {
+    let chevron = document.getElementsByClassName('fe-chevron-down').item(0)
+    if (chevron) {
+        chevron.classList.remove('fe-chevron-down')
+        chevron.classList.add('fe-chevron-up')
+    }
+}
+
+export const toggleChevronDown = () => {
+    let chevron = document.getElementsByClassName('fe-chevron-up').item(0)
+    if (chevron) {
+        chevron.classList.remove('fe-chevron-up')
+        chevron.classList.add('fe-chevron-down')
+    }
+}
