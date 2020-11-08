@@ -14,11 +14,13 @@ function App() {
   const [coreTeamPulls, setCoreTeamPulls] = useState(0);
   const [showDetailed, setShowDetailed] = useState(0);
 
+  // get data on mount
   useEffect(() => {
     getAllReactData(onSuccess)
     setShowDetailed(false)
   }, []);
 
+  // once we have the data, calculate values
   const onSuccess = (data) => {
     setTotalNewPulls(data.filter(pull => checkDateIsToday(pull.created_at)).length)
     setTotalClosedPulls(data.filter(pull => checkDateIsToday(pull.closed_at)).length)
@@ -27,9 +29,11 @@ function App() {
       if (labelItem.name === "React Core Team") pull.isCore = true
       return labelItem.name === "React Core Team"
     })))
+    // put React Core Team pulls first
     setPullsData(data.sort((a, b) => !!b.isCore - !!a.isCore))
   }
 
+  // opening and closing the 'details' section
   const toggleChevron = () => {
     if (showDetailed === false) {
       toggleChevronDown()
@@ -38,14 +42,16 @@ function App() {
     return setShowDetailed(!showDetailed)
   };
 
+  // side menu navigation actions
   const goToSnapshot = () => {
     const snapshotButton = document.getElementById('goToSnapshot')
     snapshotButton.classList.add('active')
     const detailedButton = document.getElementById('goToDetailed')
     detailedButton.classList.remove('active')
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+    const snapshotDiv = document.getElementById('snapshot')
+    snapshotDiv.scrollIntoView({ behavior: "smooth" })
     setShowDetailed(false)
-    toggleChevron()
+    toggleChevronUp()
   }
 
   const goToDetailed = () => {
@@ -53,9 +59,10 @@ function App() {
     detailedButton.classList.add('active')
     const snapshotButton = document.getElementById('goToSnapshot')
     snapshotButton.classList.remove('active')
-    window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" })
+    const detailDiv = document.getElementById('detailed')
+    detailDiv.scrollIntoView({ behavior: "smooth", alignTo: true })
     setShowDetailed(true)
-    toggleChevron()
+    toggleChevronDown()
   }
 
   return (
@@ -63,7 +70,8 @@ function App() {
       <Page.Content className="bg-block">
         <div style={{ backgroundColor: "white" }} className="p-5">
           <Grid.Row>
-            <Grid.Col className={"col-12 col-md-3"}>
+            {/* Sidebar */}
+            <Grid.Col className={"col-12 col-lg-3"} id="snapshot">
               <h1 className="mb-5">Hello Betty</h1>
               <Avatar
                 size={"xl"}
@@ -93,7 +101,9 @@ function App() {
                 </List.Group>
               </div>
             </Grid.Col>
-            <Grid.Col className={"col-12 col-md-9"}>
+
+            {/* Main content */}
+            <Grid.Col className={"col-12 col-lg-9"}>
               <Snapshot
                 pullsData={pullsData}
                 totalNewPulls={totalNewPulls}
@@ -101,7 +111,9 @@ function App() {
                 totalOpenPulls={totalOpenPulls}
                 coreTeamPulls={coreTeamPulls}
               />
+
               <Card id={"detailed"}>
+                {/* Deconstruct Card to build collapse functionality */}
                 <Card.Header>
                   <Card.Title>Detailed</Card.Title>
                   <Card.Options>
@@ -123,7 +135,7 @@ function App() {
             </Grid.Col>
           </Grid.Row>
         </div>
-      </Page.Content>
+      </Page.Content >
     </div >
   );
 }

@@ -15,17 +15,22 @@ export function getAllReactData(onSuccess = () => null) {
         })
     })
         .then(response => {
+            // Max 100 responses per page
+            // get pagination headers
             linkHeader = response.headers.get('Link')
             return response.json()
         })
         .then(response => {
+            // concat each page of responses together
             let currentPageRepos = response;
             dataArray = !!dataArray[0] ? dataArray.concat(currentPageRepos) : currentPageRepos
             nextUrl = linkHeader.substring(linkHeader.indexOf("<") + 1, linkHeader.indexOf(">"));
 
             if (linkHeader.includes("next")) {
+                // loop through until last page
                 return getAllReactData();
             }
+            // send all data
             else return dataArray
         })
         .then(response => onSuccess(dataArray))

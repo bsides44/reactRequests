@@ -19,10 +19,6 @@ code {
   overflow: auto;
 }
 
-.bg-block {
-  height: 100vh;
-  background-color: #F3F1DF;
-}
 
 .App-logo {
   height: 40vmin;
@@ -84,4 +80,5 @@ code {
 
 #detailCard .card-title {
   overflow-wrap: anywhere;
+  overflow: -webkit-paged-x;
 }
