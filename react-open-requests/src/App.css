@@ -81,3 +81,7 @@ code {
 .fe-chevron-down:hover, .fe-chevron-up:hover{
   cursor: pointer;
 }
+
+#detailCard .card-title {
+  overflow-wrap: anywhere;
+}

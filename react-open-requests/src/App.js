@@ -63,7 +63,7 @@ function App() {
       <Page.Content className="bg-block">
         <div style={{ backgroundColor: "white" }} className="p-5">
           <Grid.Row>
-            <Grid.Col>
+            <Grid.Col className={"col-12 col-md-3"}>
               <h1 className="mb-5">Hello Betty</h1>
               <Avatar
                 size={"xl"}
@@ -85,7 +85,7 @@ function App() {
                   <List.GroupItem
                     id="goToDetailed"
                     onClick={() => goToDetailed()}
-                    className="d-flex align-items-center"
+                    className="d-flex align-items-center mb-5"
                     icon="server"
                   >
                     Detailed
@@ -93,7 +93,7 @@ function App() {
                 </List.Group>
               </div>
             </Grid.Col>
-            <Grid.Col md={9} sm={12}>
+            <Grid.Col className={"col-12 col-md-9"}>
               <Snapshot
                 pullsData={pullsData}
                 totalNewPulls={totalNewPulls}

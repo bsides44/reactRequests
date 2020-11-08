@@ -40,8 +40,7 @@ const ProportionChart = (props) => {
       borderColor: "none",
       style: {
         color: "#333333",
-        fontSize: "14",
-        whiteSpace: "nowrap",
+        whiteSpace: "normal",
       },
       headerFormat: `<span style="font-size: "14px"">{point.key}:</span>`,
       pointFormatter: function () {
@@ -133,8 +132,7 @@ const ProportionChart = (props) => {
       borderColor: "none",
       style: {
         color: "#333333",
-        fontSize: "14",
-        whiteSpace: "nowrap",
+        whiteSpace: "normal",
       },
       headerFormat: `<span style="font-size: "14px"">{point.key}:</span>`,
       pointFormatter: function () {

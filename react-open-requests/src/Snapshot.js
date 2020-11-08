@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import ProportionChart from './ProportionChart'
 import { calculateAvOpenTime } from './tools'
-import { Grid, Card, StampCard } from "tabler-react";
+import { Grid, Card, Dimmer, StampCard } from "tabler-react";
 
 const Snapshot = (props) => {
   const { pullsData, totalOpenPulls, totalNewPulls, coreTeamPulls, totalClosedPulls } = props;
@@ -34,7 +34,11 @@ const Snapshot = (props) => {
           <Grid.Col>
             <Card title={"Average open time"}>
               <Card.Body className={"m-0 responsive-h1"}>
-                {averageTime ? averageTime.map((piece, i) => <h1 key={i}>{piece}{i === averageTime.length - 1 ? "" : ","}</h1>) : <p>Loading...</p>}
+                {averageTime ? averageTime.map((piece, i) =>
+                  <h1 key={i}>{piece}{i === averageTime.length - 1 ? "" : ","}</h1>
+                ) :
+                  <Dimmer active loader><div style={{ height: "60px" }}></div></Dimmer>
+                }
               </Card.Body>
             </Card>
           </Grid.Col>
