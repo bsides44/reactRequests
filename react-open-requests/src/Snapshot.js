@@ -10,7 +10,7 @@ const Snapshot = (props) => {
   const averageTime = pullsData ? calculateAvOpenTime(pullsData) : null
   return (
     <Grid.Row>
-      <Grid.Col md={8} >
+      <Grid.Col >
         <Grid.Row>
           <Grid.Col>
             <StampCard
@@ -46,7 +46,7 @@ const Snapshot = (props) => {
         </Grid.Row>
       </Grid.Col>
 
-      <Grid.Col md={4} xl={4}>
+      <Grid.Col>
         <Card title={"Proportion of React Core Team requests"}>
           <Card.Body style={{ fontSize: 80, color: "orange" }}>
             <ProportionChart
