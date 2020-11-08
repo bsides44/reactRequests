@@ -19,7 +19,7 @@ const Detailed = (props) => {
                 const eventOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12: true }
                 const durationString = calculateTimeToNow(event)
 
-                return <Grid.Col key={i} md={6} xl={4}>
+                return <Grid.Col key={i} xl={4} md={6} sm={12}>
                   <Card title={pull.title} style={{ backgroundColor: pull.isCore ? "#89ABE9" : "" }}>
                     <Card.Body >
                       <p>Request id:  <a href={pull.html_url} target="_black" rel="noopener noreferrer" alt="Link to pull request">

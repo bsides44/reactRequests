@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Page, Card, Grid, List, Avatar } from "tabler-react";
-import './App.css';
-import { getAllReactData } from './api.js'
 import Detailed from './Detailed'
 import Snapshot from './Snapshot'
+import { Page, Card, Grid, List, Avatar } from "tabler-react";
+import { getAllReactData } from './api.js'
 import { checkDateIsToday, toggleChevronUp, toggleChevronDown } from "./tools"
 import betty from './img/betty.jpg'
 
@@ -33,10 +32,10 @@ function App() {
 
   const toggleChevron = () => {
     if (showDetailed === false) {
-      toggleChevronUp()
+      toggleChevronDown()
       goToDetailed()
     }
-    else toggleChevronDown()
+    else toggleChevronUp()
     return setShowDetailed(!showDetailed)
   };
 
@@ -63,7 +62,7 @@ function App() {
       <Page.Content className="bg-block">
         <div style={{ backgroundColor: "white" }} className="p-5">
           <Grid.Row>
-            <Grid.Col md={3}>
+            <Grid.Col>
               <h1 className="mb-5">Hello Betty</h1>
               <Avatar
                 size={"xl"}
@@ -92,7 +91,7 @@ function App() {
                 </List.Group>
               </div>
             </Grid.Col>
-            <Grid.Col>
+            <Grid.Col md={9} sm={12}>
               <Snapshot
                 pullsData={pullsData}
                 totalNewPulls={totalNewPulls}
@@ -106,7 +105,7 @@ function App() {
                   <Card.Options>
                     <Card.OptionsItem
                       onClick={() => toggleChevron()}
-                      className="icon fe fe-chevron-down"
+                      type="collapse"
                     />
                   </Card.Options>
                 </Card.Header>

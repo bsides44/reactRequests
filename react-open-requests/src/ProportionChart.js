@@ -63,9 +63,6 @@ const ProportionChart = (props) => {
           exposeAsGroupOnly: false,
           pointDescriptionFormatter: undefined,
         },
-        animation: {
-          defer: 10
-        }
       },
     },
     xAxis: {
@@ -82,14 +79,14 @@ const ProportionChart = (props) => {
       data: [{
         name: "React Core Team",
         color: "#29418D",
-        y: 0,
+        y: 40,
         sliced: true,
-        selected: true
       },
       {
         name: "Other",
-        color: "#d8d8d8",
-        y: 100,
+        color: "#A0A0A0",
+        y: 60,
+        selected: true
       }]
     }],
     responsive: {
