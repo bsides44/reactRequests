@@ -72,33 +72,35 @@ function App() {
           <Grid.Row>
             {/* Sidebar */}
             <Grid.Col className={"col-12 col-lg-3"} id="snapshot">
-              <h1 className="mb-5">Hello Betty</h1>
-              <Avatar
-                size={"xl"}
-                imageURL={betty}
-                className="mb-5"
-              />
-              <h5 className="mb-5"><a href="https://github.com/facebook/react" target="_blank" rel="noopener noreferrer">Github React repo</a> dashboard</h5>
-              <div>
-                <List.Group transparent={true} className="mt-2">
-                  <List.GroupItem
-                    id="goToSnapshot"
-                    className="d-flex align-items-center"
-                    active
-                    onClick={() => goToSnapshot()}
-                    icon="pie-chart"
-                  >
-                    Snapshot
+              <div className={"side-nav"}>
+                <h1 className="mb-5">Hello Betty</h1>
+                <Avatar
+                  size={"xl"}
+                  imageURL={betty}
+                  className="mb-5"
+                />
+                <h5 className="mb-5"><a href="https://github.com/facebook/react" target="_blank" rel="noopener noreferrer">Github React repo</a> dashboard</h5>
+                <div>
+                  <List.Group transparent={true} className="mt-2">
+                    <List.GroupItem
+                      id="goToSnapshot"
+                      className="d-flex align-items-center"
+                      active
+                      onClick={() => goToSnapshot()}
+                      icon="pie-chart"
+                    >
+                      Snapshot
                     </List.GroupItem>
-                  <List.GroupItem
-                    id="goToDetailed"
-                    onClick={() => goToDetailed()}
-                    className="d-flex align-items-center mb-5"
-                    icon="server"
-                  >
-                    Detailed
+                    <List.GroupItem
+                      id="goToDetailed"
+                      onClick={() => goToDetailed()}
+                      className="d-flex align-items-center mb-5"
+                      icon="server"
+                    >
+                      Detailed
                   </List.GroupItem>
-                </List.Group>
+                  </List.Group>
+                </div>
               </div>
             </Grid.Col>
 
